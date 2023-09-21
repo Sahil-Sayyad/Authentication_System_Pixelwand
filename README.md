@@ -120,4 +120,5 @@ Base URL: http://localhost:8000
 - 6. To log out, make a GET request to /logout with the JWT token in the Authorization header.
 - 7. To refresh your token, make a GET request to /refresh with the JWT token in the Authorization header.
 - 7. To see protected route, make a GET request to /protected with the JWT token in the Authorization header.
+- 8. For Unit Testing Use the Jest Type Follwoing Command <b>npx jest</b> 
 
