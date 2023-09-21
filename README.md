@@ -52,7 +52,7 @@ Base URL: http://localhost:8000
 -  <b>3.  User Logout </b>
 
      <p> Endpoint: /logout<br>
-      Method: POST<br>
+      Method: GET<br>
       Description: Allows users to log out of a specific session, invalidating the provided session token.<br>
      </p>
      
@@ -68,7 +68,7 @@ Base URL: http://localhost:8000
 -  <b>4.  Token Refresh </b>
 
      <p>Endpoint: /refresh<br>
-      Method: POST<br>
+      Method: GET<br>
       Description: Allows users to refresh their session token, extending their session's validity.<br>
       </p> 
       
