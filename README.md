@@ -101,6 +101,10 @@ Base URL: http://localhost:8000
       include the JWT token in the Authorization header as follows: <br>
       Bearer your-jwt-token.
 
+   <b>ScreenShot How To Add Bearer Token</b><br><br>
+   
+![Screenshot (148)](https://github.com/Sahil-Sayyad/MongoDB_Authentication_System_Pixelwand/assets/96423459/242608ae-eefc-4692-86fe-ed11ac23e84f)
+
 ## Getting Started
 
 <b>To get started with the Pixelwand authentication system, follow these steps:</b>
