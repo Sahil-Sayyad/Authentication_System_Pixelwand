@@ -1,14 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const {check} = require('express-validator');
-const validateToken = require('../middleware/validateUserToken');
+//a middleware to authenticate API requests.
+const authMiddleware = require('../middleware/validateUserToken');
 const {
   registerUser,
   loginUser,
   logoutUser,
+  refreshToken,
   protectedRoute
 } = require("../controllers/userController");
 
+/**Validate user input, ensuring that:
+    - Email is in a valid format.
+    - Password meets security requirements (e.g., minimum length, complexity). */
 router.post("/register",
 [
     check('email').isEmail(),
@@ -18,6 +23,7 @@ router.post("/register",
 ,registerUser);
 
 router.post("/login", loginUser);
-router.get("/logout", validateToken, logoutUser);
-router.get("/protected", validateToken, protectedRoute);
+router.get("/logout", authMiddleware, logoutUser);
+router.get("/refresh", authMiddleware, refreshToken);
+router.get("/protected", authMiddleware, protectedRoute);
 module.exports = router;
