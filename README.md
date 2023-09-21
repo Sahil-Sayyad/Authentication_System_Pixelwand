@@ -100,7 +100,7 @@ Base URL: http://localhost:8000
       To use protected endpoints (/logout, /refresh, /protected),  <br>
       include the JWT token in the Authorization header as follows: <br>
       Bearer your-jwt-token.<br>
-      For Unit and integration tests Use the <b>npx jest</b> commend <br>
+      For Unit and integration tests Use the <b>npx jest</b> command <br>
    
 
    <b>ScreenShot How To Add Bearer Token</b><br><br>
