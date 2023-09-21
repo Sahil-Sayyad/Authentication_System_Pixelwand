@@ -1,5 +1,7 @@
+//importe required packages 
 const mongoose = require("mongoose");
 
+//connecting to the mongoDB
 const connectDB = async () => {
   try {
     const connect = await mongoose.connect(process.env.CONNECTION_STRING);

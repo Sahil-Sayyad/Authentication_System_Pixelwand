@@ -4,12 +4,14 @@ const User = require("../models/users");
 const Session = require("../models/sessions");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
+
 //@doc Register a user
-//@route POST  /api/user/register
+//@route POST /register
 //@access public
 const registerUser = asyncHandler(async (req, res) => {
   const { username, email, password, confirm_password } = req.body;
   const errors = validationResult(req);
+  
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
@@ -54,8 +56,9 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("User data is not Valid");
   }
 });
+
 //@doc Login a user
-//@route POST  /api/user/login
+//@route POST  /login
 //@access public
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
@@ -63,7 +66,6 @@ const loginUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("All fileds are mandetory");
   }
-
   const user = await User.findOne({ email });
   //compare user password and hashed password saved in db
   if (user && (await bcrypt.compare(password, user.password))) {
@@ -89,8 +91,17 @@ const loginUser = asyncHandler(async (req, res) => {
 //@doc Logout Current user
 //@route GET  /api/user/logout
 //@access private
-const currentUser = asyncHandler(async (req, res) => {
-  res.json(req.user);
+const logoutUser = asyncHandler(async (req, res) => {
+  const userId = req.user.userId;
+  const token = req.header('Authorization').replace('Bearer', '');
+  await Session.deleteOne({userId,token});
+  res.status(200).json({mesg:"Logout successful"});
 });
 
-module.exports = { registerUser, loginUser, currentUser };
+//@doc  Protected route (requires authentication)
+//@route GET  /protected
+//@access private
+const protectedRoute = asyncHandler(async(req, res) => {
+  res.json({ message: 'This is a protected route' });
+});
+module.exports = { registerUser, loginUser, logoutUser, protectedRoute };

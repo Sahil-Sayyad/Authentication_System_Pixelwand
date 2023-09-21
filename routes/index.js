@@ -1,12 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const { check} = require('express-validator');
+const {check} = require('express-validator');
 const validateToken = require('../middleware/validateUserToken');
 const {
   registerUser,
   loginUser,
-  currentUser,
+  logoutUser,
+  protectedRoute
 } = require("../controllers/userController");
+
 router.post("/register",
 [
     check('email').isEmail(),
@@ -14,6 +16,8 @@ router.post("/register",
     check('username').isLength({ min: 2 }),
 ]
 ,registerUser);
+
 router.post("/login", loginUser);
-router.get("/logout", validateToken, currentUser);
+router.get("/logout", validateToken, logoutUser);
+router.get("/protected", validateToken, protectedRoute);
 module.exports = router;
