@@ -1,30 +1,35 @@
 #  Authentication System API
-<p>This API provides user registration, login, logout, and token refresh functionality for the Pixelwand application.</p>
+<b>This API provides user registration, login, logout, and token refresh functionality for the Pixelwand application.</b>
 
-Base URL: https://your-api-url.com
+Base URL: http://localhost:8000
 
-Endpoints
-1. User Registration
-Endpoint: /register
-Method: POST
-Description: Allows users to create a new account by providing their email, password, and name.
-
-Request Body:
+## Endpoints
+-  <b>1. User Registration </b>
+      <p>Endpoint: /register<br>
+         Method: POST<br>
+         Description: Allows users to create a new account by providing their email, password, and name.<br>
+      </p>
+      Request Body:
 ```json
-   {
-  "email": "user@example.com",
-  "password": "password123",
-  "name": "John Doe"
-}
+            {
+              "email": "user@example.com",
+              "password": "password123",
+              "confirm_password:"password123",
+              "name": "John Doe"
+            }
 ```
 
-Response:
+
+       
+        Response:
+      
 ```json
-{
-  "token": "your-generated-jwt-token"
-}
+            {
+              "token": "your-generated-jwt-token"
+            }
 
 ```
+
 2. User Login
 Endpoint: /login
 Method: POST
