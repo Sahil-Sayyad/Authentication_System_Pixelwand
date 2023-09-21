@@ -9,7 +9,7 @@ const sessionSchema = new mongoose.Schema(
     },
     token: {
       type: String,
-      required: [true, "Please add email Token"],
+      required: [true, "Please add  Token"],
     }
   },
   {

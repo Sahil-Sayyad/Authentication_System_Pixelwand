@@ -1,19 +1,25 @@
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
 const User = require("../models/users");
+const Session = require("../models/sessions");
+const jwt = require("jsonwebtoken");
+const { validationResult } = require("express-validator");
 //@doc Register a user
 //@route POST  /api/user/register
 //@access public
 const registerUser = asyncHandler(async (req, res) => {
-  const { username, email, password , confrim_password} = req.body;
-
-  if (!username || !email || !password) {
+  const { username, email, password, confirm_password } = req.body;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  if (!username || !email || !password || !confirm_password) {
     res.status(400);
     throw new Error("All fileds are mandetory");
   }
-  if(password != confrim_password){
-     res.status(400);
-     throw new Error("Please Enter Correct Password");
+  if (password != confirm_password) {
+    res.status(400);
+    throw new Error("Please Enter Correct Password");
   }
   const userAvailable = await User.findOne({ email });
   if (userAvailable) {
@@ -25,10 +31,24 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({
     username,
     email,
-    password: hashedPassword
+    password: hashedPassword,
   });
   if (user) {
-    res.status(201).json({ _id: user.id, email: user.email });
+    const token = jwt.sign(
+      {
+        user: {
+          username: user.username,
+          email: user.email,
+          id: user.id,
+        },
+      },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: "24h" }
+    );
+
+    const session = new Session({ userId: user._id, token });
+    await session.save();
+    res.status(201).json({ token });
   } else {
     res.status(400);
     throw new Error("User data is not Valid");
@@ -47,7 +67,7 @@ const loginUser = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email });
   //compare user password and hashed password saved in db
   if (user && (await bcrypt.compare(password, user.password))) {
-    const accessToken = jwt.sign(
+    const token = jwt.sign(
       {
         user: {
           username: user.username,
@@ -56,17 +76,18 @@ const loginUser = asyncHandler(async (req, res) => {
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "30m" }
+      { expiresIn: "24h" }
     );
-
-    res.status(200).json({ accessToken });
+    const session = new Session({ userId: user._id,token });
+    await session.save();
+    res.status(200).json({ token });
   } else {
     res.status(400);
     throw new Error("email or password is not valid");
   }
 });
-//@doc Get Current user
-//@route GET  /api/user/current
+//@doc Logout Current user
+//@route GET  /api/user/logout
 //@access private
 const currentUser = asyncHandler(async (req, res) => {
   res.json(req.user);
