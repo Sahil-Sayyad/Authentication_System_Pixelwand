@@ -109,10 +109,11 @@ Base URL: http://localhost:8000
 
 <b>To get started with the Pixelwand authentication system, follow these steps:</b>
 
--  <b> 1. &nbsp; Clone Git Repo  </b>
+-  <b> I. &nbsp; Clone Git Repo  </b>
    <br>----<i> git clone https://github.com/Sahil-Sayyad/MongoDB_Authentication_System_Pixelwand.git</i><br><br>
--  <b> 2. &nbsp;Install NPM dependencies </b>
+-  <b> II. &nbsp;Install NPM dependencies </b>
    <br>----<i> npm install</i> <br>
+- 3. Use Postman or Thunder Client for Testing API Endpoints.
 - 3. Register a new user by making a POST request to /register with the required user information.
 - 4. Log in by making a POST request to /login with your email and password.
 - 5. Use the generated JWT token in the Authorization header for protected endpoints (/logout, /refresh, /protected).
