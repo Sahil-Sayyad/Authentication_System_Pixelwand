@@ -118,7 +118,7 @@ const loginUser = asyncHandler(async (req, res) => {
 // **4. User Logout**
 
 //@doc Logout Current user
-//@route GET  /api/user/logout
+//@route GET  /logout
 //@access private
 const logoutUser = asyncHandler(async (req, res) => {
   //- Create an API endpoint that allows users to log out, invalidating their session token.
