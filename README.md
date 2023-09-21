@@ -80,7 +80,21 @@ Base URL: http://localhost:8000
             {
               "token": "your-newly-generated-jwt-token"
             }
+-  <b>5.  Protected Route </b>
 
+     <p>Endpoint: /protected<br>
+      Method: GET<br>
+      Description: Allows only those authenticated users .<br>
+      </p> 
+      
+      Request Headers:
+      Authorization: Bearer your-jwt-token
+   
+      Response:
+   
+            {
+              "message": "This is a protected route"
+            }
   ## Authentication Flow
       To use protected endpoints (e.g., /logout, /refresh),<br>
       include the JWT token in the Authorization header as follows: Bearer your-jwt-token.
