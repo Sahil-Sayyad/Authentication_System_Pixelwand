@@ -29,51 +29,63 @@ Base URL: http://localhost:8000
             }
 
 ```
+-  <b>2.  User Login </b>
+      <p>Endpoint: /login<br>
+      Method: POST<br>
+      Description: Allows registered users to log in by providing their email and password.<br>
+      </p>
+      
+      Request Body:
+  ```json
+            {
+              "email": "user@example.com",
+              "password": "password123"
+            }
+ ```
 
-2. User Login
-Endpoint: /login
-Method: POST
-Description: Allows registered users to log in by providing their email and password.
-Request Body:
+   Response:
 ```json
-{
-  "email": "user@example.com",
-  "password": "password123"
-}
+            {
+              "token": "your-generated-jwt-token"
+            }
 ```
-Response:
-{
-  "token": "your-generated-jwt-token"
-}
+-  <b>3.  User Logout </b>
 
-3. User Logout
-Endpoint: /logout
-Method: POST
-Description: Allows users to log out of a specific session, invalidating the provided session token.
-Request Headers:
+     <p> Endpoint: /logout<br>
+      Method: POST<br>
+      Description: Allows users to log out of a specific session, invalidating the provided session token.<br>
+     </p>
+     
+      Request Headers:
+      Authorization: Bearer your-jwt-token
 
-Authorization: Bearer your-jwt-token
-Response:
+      Response:
+   
+            {
+              "message": "Logout successful"
+            }
 
-{
-  "message": "Logout successful"
-}
-4.Token Refresh
-Endpoint: /refresh
-Method: POST
-Description: Allows users to refresh their session token, extending their session's validity.
-Request Headers:
+-  <b>4.  Token Refresh </b>
 
-Authorization: Bearer your-jwt-token
-Response:
-{
-  "token": "your-newly-generated-jwt-token"
-}
+     <p>Endpoint: /refresh<br>
+      Method: POST<br>
+      Description: Allows users to refresh their session token, extending their session's validity.<br>
+      </p> 
+      
+      Request Headers:
+      Authorization: Bearer your-jwt-token
+   
+      Response:
+   
+            {
+              "token": "your-newly-generated-jwt-token"
+            }
 
-Authentication Flow
-To use protected endpoints (e.g., /logout, /refresh), include the JWT token in the Authorization header as follows: Bearer your-jwt-token.
+  ##Authentication Flow
+      To use protected endpoints (e.g., /logout, /refresh),<br>
+      include the JWT token in the Authorization header as follows: Bearer your-jwt-token.
 
-Getting Started
+##Getting Started
 1.To get started with the Pixelwand authentication system, follow these steps:
 
 2.Register a new user by making a POST request to /register with the required user information.
