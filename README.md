@@ -81,20 +81,25 @@ Base URL: http://localhost:8000
               "token": "your-newly-generated-jwt-token"
             }
 
-  ##Authentication Flow
+  ## Authentication Flow
       To use protected endpoints (e.g., /logout, /refresh),<br>
       include the JWT token in the Authorization header as follows: Bearer your-jwt-token.
 
-##Getting Started
-1.To get started with the Pixelwand authentication system, follow these steps:
+## Getting Started
 
-2.Register a new user by making a POST request to /register with the required user information.
+<b>To get started with the Pixelwand authentication system, follow these steps:</b>
 
-3.Log in by making a POST request to /login with your email and password.
+-  <b> 1. &nbsp; Clone Git Repo  </b>
+<br>----<i> git clone https://github.com/Sahil-Sayyad/Quora_Clone.git</i><br><br>
+-  <b> 2. &nbsp;Install NPM dependencies </b>
+   <br>----<i> npm install</i> <br>
+- 3.Register a new user by making a POST request to /register with the required user information.
 
-4.Use the generated JWT token in the Authorization header for protected endpoints (e.g., /logout, /refresh).
+- 4.Log in by making a POST request to /login with your email and password.
 
-5.To log out, make a POST request to /logout with the JWT token in the Authorization header.
+- 5.Use the generated JWT token in the Authorization header for protected endpoints (e.g., /logout, /refresh).
 
-6.To refresh your token, make a POST request to /refresh with the JWT token in the Authorization header.
+- 6.To log out, make a POST request to /logout with the JWT token in the Authorization header.
+
+- 7.To refresh your token, make a POST request to /refresh with the JWT token in the Authorization header.
 
