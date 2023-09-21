@@ -21,7 +21,7 @@ Base URL: http://localhost:8000
 
 
        
-        Response:
+      Response:
       
 ```json
             {
@@ -43,7 +43,7 @@ Base URL: http://localhost:8000
             }
  ```
 
-   Response:
+      Response:
 ```json
             {
               "token": "your-generated-jwt-token"
@@ -56,7 +56,7 @@ Base URL: http://localhost:8000
       Description: Allows users to log out of a specific session, invalidating the provided session token.<br>
      </p>
      
-      Request Headers:
+      Request Headers:<br>
       Authorization: Bearer your-jwt-token
 
       Response:
@@ -72,7 +72,7 @@ Base URL: http://localhost:8000
       Description: Allows users to refresh their session token, extending their session's validity.<br>
       </p> 
       
-      Request Headers:
+      Request Headers:<br>
       Authorization: Bearer your-jwt-token
    
       Response:
@@ -87,7 +87,7 @@ Base URL: http://localhost:8000
       Description: Allows only those authenticated users .<br>
       </p> 
       
-      Request Headers:
+      Request Headers:<br>
       Authorization: Bearer your-jwt-token
    
       Response:
@@ -95,25 +95,24 @@ Base URL: http://localhost:8000
             {
               "message": "This is a protected route"
             }
-  ## Authentication Flow
-      To use protected endpoints (e.g., /logout, /refresh),<br>
-      include the JWT token in the Authorization header as follows: Bearer your-jwt-token.
+
+   ## Authentication Flow
+      To use protected endpoints (/logout, /refresh, /protected),  <br>
+      include the JWT token in the Authorization header as follows: <br>
+      Bearer your-jwt-token.
 
 ## Getting Started
 
 <b>To get started with the Pixelwand authentication system, follow these steps:</b>
 
 -  <b> 1. &nbsp; Clone Git Repo  </b>
-<br>----<i> git clone https://github.com/Sahil-Sayyad/MongoDB_Authentication_System_Pixelwand.git</i><br><br>
+   <br>----<i> git clone https://github.com/Sahil-Sayyad/MongoDB_Authentication_System_Pixelwand.git</i><br><br>
 -  <b> 2. &nbsp;Install NPM dependencies </b>
    <br>----<i> npm install</i> <br>
-- 3.Register a new user by making a POST request to /register with the required user information.
-
-- 4.Log in by making a POST request to /login with your email and password.
-
-- 5.Use the generated JWT token in the Authorization header for protected endpoints (e.g., /logout, /refresh).
-
-- 6.To log out, make a POST request to /logout with the JWT token in the Authorization header.
-
-- 7.To refresh your token, make a POST request to /refresh with the JWT token in the Authorization header.
+- 3. Register a new user by making a POST request to /register with the required user information.
+- 4. Log in by making a POST request to /login with your email and password.
+- 5. Use the generated JWT token in the Authorization header for protected endpoints (/logout, /refresh, /protected).
+- 6. To log out, make a GET request to /logout with the JWT token in the Authorization header.
+- 7. To refresh your token, make a GET request to /refresh with the JWT token in the Authorization header.
+- 7. To see protected route, make a GET request to /protected with the JWT token in the Authorization header.
 
