@@ -116,6 +116,8 @@ Base URL: http://localhost:8000
    <br>----<i> git clone https://github.com/Sahil-Sayyad/MongoDB_Authentication_System_Pixelwand.git</i><br><br>
 -  <b> II. &nbsp;Install NPM dependencies </b>
    <br>----<i> npm install</i> <br>
+-  <b> III. &nbsp;Set Up .env File  </b>
+   <br>----<i> add monngoDb url</i> <br>
 - 3. Use Postman or Thunder Client for Testing API Endpoints.
 - 3. Register a new user by making a POST request to /register with the required user information.
 - 4. Log in by making a POST request to /login with your email and password.
