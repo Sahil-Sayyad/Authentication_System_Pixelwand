@@ -14,7 +14,7 @@ Base URL: http://localhost:8000
             {
               "email": "user@example.com",
               "password": "password123",
-              "confirm_password:"password123",
+              "confirm_password":"password123",
               "username": "John Doe"
             }
 ```
